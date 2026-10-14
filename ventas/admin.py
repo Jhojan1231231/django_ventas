@@ -12,3 +12,8 @@ class pedidoAdmin(admin.ModelAdmin):
     list_display = ('cliente', 'producto', 'fecha', 'total', 'estado')
     search_fields = ('producto', 'cliente__nombre', 'cliente__apellido')
     list_filter = ('estado', 'fecha')
+
+admin.display(description='total')
+def total(self, obj):
+    monto = f"{obj.total:,.0f}".replace(',', '.')
+    return f"${monto}"
